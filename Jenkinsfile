@@ -16,8 +16,8 @@ pipeline  {
             steps {
                 echo 'Removing containers ...'
                  dir('.'){
-					sh "docker stop front_dashboard"
-                    sh "docker rm front_dashboard"
+					sh "docker stop front_dashboard > /dev/null"
+                    sh "docker rm front_dashboard > /dev/null"
                 }
             }
         }
@@ -25,7 +25,7 @@ pipeline  {
             steps {
                 echo 'Removing images ...'
                  dir('.'){
-                    sh "docker rmi movchanets/front_dashboard"
+                    sh "docker rmi movchanets/front_dashboard > /dev/null"
                 }
             }
         }
