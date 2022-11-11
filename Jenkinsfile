@@ -16,8 +16,9 @@ pipeline  {
             steps {
                 echo 'Removing containers ...'
                  dir('.'){
-					sh "docker stop front_dashboard  exit 0"
-                    sh "docker rm front_dashboard exit 0"
+                   sh " docker ps -q --filter "name=front_dashboard" | grep -q . && docker stop front_dashboard || echo Not Found"
+				
+                    sh "docker ps -q --filter "name=front_dashboard" | grep -q . && docker rm front_dashboard || echo Not Found"
                 }
             }
         }
@@ -25,7 +26,7 @@ pipeline  {
             steps {
                 echo 'Removing images ...'
                  dir('.'){
-                    sh "docker rmi movchanets/front_dashboard exit 0"
+                    sh "docker ps -q --filter "name=movchanets/front_dashboard" | grep -q . && docker rmi movchanets/front_dashboard || echo Not Found"
                 }
             }
         }
