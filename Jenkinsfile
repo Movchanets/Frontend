@@ -26,7 +26,8 @@ pipeline  {
             steps {
                 echo 'Removing images ...'
                  dir('.'){
-                    sh "docker ps -q --filter "name=movchanets/front_dashboard" | grep -q . && docker rmi movchanets/front_dashboard || echo Not Found"
+                    sh 'docker ps -q --filter "name=movchanets/front_dashboard" | grep -q . && docker rmi movchanets/front_dashboard || echo Not Found'
+
                 }
             }
         }
